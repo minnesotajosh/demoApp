@@ -1,13 +1,13 @@
-var http = require('http');
+var express = require('express');
+var path = require('path');
+var app = express();
 
-const PORT=8080;
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
-function handleRequest(request, response) {
-    response.end('It works!! Path Hit: ' + request.url);
-}
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
-var server = http.createServer(handleRequest);
-
-server.listen(PORT, function() {
-    console.log("Server listening on PORT:", PORT);
+app.listen(8080, function () {
+  console.log('Example app listening on port 8080!');
 });
